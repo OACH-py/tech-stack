@@ -1,408 +1,337 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Osvaldo Cárdenas | Portafolio Profesional</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Fuentes Google: JetBrains Mono (Código) e Inter (Lectura) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Iconos FontAwesome -->
+    <meta name="description"
+        content="Portafolio de Osvaldo Antonio Cárdenas Hernández - Ingeniería Electrónica, SysAdmin y Estrategia.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Configuración personalizada de Tailwind -->
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        term: {
-                            bg: '#0d1117',        /* GitHub Dark Dimmed Background */
-                            card: '#161b22',      /* GitHub Dark Dimmed Card */
-                            border: '#30363d',    /* GitHub Dark Border */
-                            text: '#c9d1d9',      /* GitHub Dark Text */
-                            green: '#2ea043',     /* Terminal Green */
-                            blue: '#58a6ff',      /* Link Blue */
-                            purple: '#bc8cff',    /* Keyword Purple */
-                            yellow: '#d29922',    /* String Yellow */
-                            orange: '#d18616',    /* Warning Orange */
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            background-color: #0d1117;
-            color: #c9d1d9;
-        }
-        
-        /* Efecto de cursor parpadeante */
-        .cursor-blink {
-            animation: blink 1s step-end infinite;
-        }
-        
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* Scrollbar personalizada */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0d1117; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #30363d; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #58a6ff; 
-        }
-
-        /* Efecto Glow suave en tarjetas */
-        .tech-card:hover {
-            border-color: #58a6ff;
-            box-shadow: 0 0 15px rgba(88, 166, 255, 0.1);
-        }
-    </style>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="antialiased min-h-screen flex flex-col">
 
-    <!-- Navbar Sticky -->
-    <nav class="sticky top-0 z-50 bg-term-bg/90 backdrop-blur-md border-b border-term-border">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-term-green font-mono font-bold text-lg">~/osvaldo_cv</span>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4 font-mono text-sm">
-                        <a href="#about" class="hover:text-term-blue px-3 py-2 rounded-md transition-colors">./perfil</a>
-                        <a href="#skills" class="hover:text-term-blue px-3 py-2 rounded-md transition-colors">./skills</a>
-                        <a href="#projects" class="hover:text-term-blue px-3 py-2 rounded-md transition-colors">./proyectos</a>
-                        <a href="#experience" class="hover:text-term-blue px-3 py-2 rounded-md transition-colors">./trayectoria</a>
-                        <a href="#contact" class="hover:text-term-blue px-3 py-2 rounded-md transition-colors">./contacto</a>
-                    </div>
-                </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-term-text hover:text-white focus:outline-none">
-                        <i class="fas fa-bars fa-lg"></i>
-                    </button>
-                </div>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <a href="#" class="logo font-mono text-green">~/osvaldo_cv</a>
+
+            <div class="desktop-menu font-mono">
+                <a href="#about">./perfil</a>
+                <a href="#skills">./skills</a>
+                <a href="#projects">./proyectos</a>
+                <a href="#experience">./trayectoria</a>
+                <a href="#contact">./contacto</a>
             </div>
+
+            <button id="menu-toggle" class="mobile-menu-btn" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
+
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-term-border bg-term-card">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 font-mono text-sm">
-                <a href="#about" class="block hover:text-term-blue px-3 py-2">./perfil</a>
-                <a href="#skills" class="block hover:text-term-blue px-3 py-2">./skills</a>
-                <a href="#projects" class="block hover:text-term-blue px-3 py-2">./proyectos</a>
-                <a href="#experience" class="block hover:text-term-blue px-3 py-2">./trayectoria</a>
-                <a href="#contact" class="block hover:text-term-blue px-3 py-2">./contacto</a>
-            </div>
+        <div id="mobile-menu" class="mobile-menu hidden font-mono">
+            <a href="#about">./perfil</a>
+            <a href="#skills">./skills</a>
+            <a href="#projects">./proyectos</a>
+            <a href="#experience">./trayectoria</a>
+            <a href="#contact">./contacto</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header id="about" class="flex-grow flex items-center justify-center pt-20 pb-12 px-4">
-        <div class="max-w-4xl w-full text-center">
-            <div class="inline-block px-3 py-1 mb-4 text-xs font-mono text-term-green border border-term-green rounded-full bg-term-green/10">
-                System Online
+    <header id="about" class="hero section">
+        <div class="container hero-content">
+            <div class="status-badge font-mono">
+                <span class="status-dot"></span> System Online
             </div>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
-                Osvaldo Antonio <br class="md:hidden"> Cárdenas Hernández
+
+            <h1 class="hero-title">
+                Osvaldo Antonio<br>
+                <span class="text-white">Cárdenas Hernández</span>
             </h1>
-            <p class="text-lg md:text-xl text-term-blue font-mono mb-6">
-                Ingeniería Electrónica <span class="text-term-text">|</span> Análisis & Estructura
+
+            <p class="hero-subtitle font-mono text-blue">
+                Ingeniería Electrónica <span class="text-primary">|</span> Análisis & Estructura
             </p>
-            <p class="text-term-text max-w-3xl mx-auto text-base md:text-lg mb-8 leading-relaxed">
-                Mi rol principal en equipos es brindar <strong>estructura y análisis</strong>. Transformo ideas abstractas en planes ejecutables, asegurando que sean <strong>viables tecnológicamente y rentables</strong>. Fusiono este perfil estratégico con habilidades técnicas en Linux, Electrónica y Automatización.
+
+            <p class="hero-description">
+                Mi rol principal en equipos es brindar <strong>estructura y análisis</strong>. Transformo ideas
+                abstractas en planes ejecutables, asegurando que sean <strong>viables tecnológicamente y
+                    rentables</strong>. Fusiono este perfil estratégico con habilidades técnicas en Linux, Electrónica y
+                Automatización.
             </p>
-            
-            <div class="flex flex-wrap justify-center gap-4 font-mono text-sm">
-                <a href="#contact" class="bg-term-green hover:bg-opacity-90 text-white px-6 py-3 rounded-md transition-all">
-                    <i class="fas fa-envelope mr-2"></i>Contactar
+
+            <div class="hero-actions font-mono">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Contactar
                 </a>
-                <a href="https://github.com/OACH-py" target="_blank" class="border border-term-border bg-term-card hover:border-term-text text-term-text px-6 py-3 rounded-md transition-all">
-                    <i class="fab fa-github mr-2"></i>Perfil GitHub
+                <a href="https://github.com/OACH-py" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-github"></i> Perfil GitHub
                 </a>
             </div>
-            
-            <!-- Terminal Decorativa -->
-            <div class="mt-12 mx-auto max-w-3xl text-left shadow-2xl rounded-lg overflow-hidden border border-term-border bg-black font-mono text-sm md:text-base">
-                <div class="bg-term-card px-4 py-2 border-b border-term-border flex items-center gap-2">
-                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                    <span class="ml-2 text-xs text-term-text opacity-50">root@osvaldo-pc: ~/lerdo/dgo</span>
+
+            <!-- Terminal Simulation -->
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control red"></span>
+                        <span class="control yellow"></span>
+                        <span class="control green"></span>
+                    </div>
+                    <div class="terminal-title font-mono">root@osvaldo-pc: ~/lerdo/dgo</div>
                 </div>
-                <div class="p-6 text-term-text space-y-2">
-                    <p>
-                        <span class="text-term-green">➜</span> <span class="text-term-blue">~</span> <span class="text-term-purple">echo</span> $TEAM_ROLE
-                    </p>
-                    <p class="pl-4 text-gray-400">
+                <div class="terminal-body font-mono">
+                    <div class="terminal-line">
+                        <span class="prompt-user">➜</span> <span class="prompt-path">~</span> <span
+                            class="cmd">echo</span> <span class="var">$TEAM_ROLE</span>
+                    </div>
+                    <div class="terminal-output text-secondary">
                         "Estructurador de Ideas & Analista de Viabilidad/Rentabilidad."
-                    </p>
-                    <p>
-                        <span class="text-term-green">➜</span> <span class="text-term-blue">~</span> <span class="text-term-purple">neofetch</span> --summary
-                    </p>
-                    <div class="pl-4 text-gray-400 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    </div>
+
+                    <div class="terminal-line">
+                        <span class="prompt-user">➜</span> <span class="prompt-path">~</span> <span
+                            class="cmd">neofetch</span> --summary
+                    </div>
+                    <div class="terminal-output grid-output">
                         <div>
-                            <span class="text-term-blue">Perfil:</span> Híbrido (Técnico + Estratégico)<br>
-                            <span class="text-term-blue">Linux:</span> Arch, Debian, Fedora<br>
-                            <span class="text-term-blue">Ingeniería:</span> Lógica y Circuitos
+                            <span class="key">Perfil:</span> Híbrido (Técnico + Estratégico)<br>
+                            <span class="key">Linux:</span> Arch, Debian, Fedora<br>
+                            <span class="key">Ingeniería:</span> Lógica y Circuitos
                         </div>
                         <div>
-                            <span class="text-term-blue">Soft Skills:</span> Asesoría y Auditoría<br>
-                            <span class="text-term-blue">Intereses:</span> IA, Open Source<br>
-                            <span class="text-term-blue">Ubicación:</span> Comarca Lagunera
+                            <span class="key">Soft Skills:</span> Asesoría y Auditoría<br>
+                            <span class="key">Intereses:</span> IA, Open Source<br>
+                            <span class="key">Ubicación:</span> Comarca Lagunera
                         </div>
                     </div>
-                    <p>
-                        <span class="text-term-green">➜</span> <span class="text-term-blue">~</span> <span class="cursor-blink">_</span>
-                    </p>
+
+                    <div class="terminal-line">
+                        <span class="prompt-user">➜</span> <span class="prompt-path">~</span> <span
+                            class="cursor">_</span>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Sección Skills (Grid) -->
-    <section id="skills" class="py-16 px-4 bg-term-card border-y border-term-border">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-white mb-12 flex items-center font-mono">
-                <span class="text-term-purple mr-3">function</span> getSkills() {
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section">
+        <div class="container">
+            <h2 class="section-title font-mono">
+                <span class="text-purple">function</span> getSkills() {
             </h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Skill Card 1: SysAdmin -->
-                <div class="tech-card bg-term-bg border border-term-border p-6 rounded-lg transition-all duration-300">
-                    <div class="text-term-blue text-3xl mb-4"><i class="fab fa-linux"></i></div>
-                    <h3 class="text-lg font-bold text-white mb-2">Linux & Infraestructura</h3>
-                    <ul class="text-sm space-y-2 font-mono text-term-text">
-                        <li><span class="text-term-green">✓</span> Arch, Debian, Fedora</li>
-                        <li><span class="text-term-green">✓</span> Docker & Contenedores</li>
-                        <li><span class="text-term-green">✓</span> Bash Scripting</li>
+
+            <div class="grid skills-grid">
+                <!-- Linux & Infra -->
+                <div class="card skill-card">
+                    <div class="card-icon text-blue"><i class="fab fa-linux"></i></div>
+                    <h3 class="card-title">Linux & Infraestructura</h3>
+                    <ul class="skill-list font-mono">
+                        <li><i class="fas fa-check text-green"></i> Arch, Debian, Fedora</li>
+                        <li><i class="fas fa-check text-green"></i> Docker & Contenedores</li>
+                        <li><i class="fas fa-check text-green"></i> Bash Scripting</li>
                     </ul>
                 </div>
 
-                 <!-- Skill Card 2: Ingeniería (NUEVO) -->
-                 <div class="tech-card bg-term-bg border border-term-border p-6 rounded-lg transition-all duration-300">
-                    <div class="text-term-blue text-3xl mb-4"><i class="fas fa-microchip"></i></div>
-                    <h3 class="text-lg font-bold text-white mb-2">Fundamentos Ingeniería</h3>
-                    <ul class="text-sm space-y-2 font-mono text-term-text">
-                        <li><span class="text-term-green">✓</span> Microcontroladores (Arduino)</li>
-                        <li><span class="text-term-green">✓</span> Análisis de Circuitos</li>
-                        <li><span class="text-term-green">✓</span> Lógica Matemática</li>
+                <!-- Engineering -->
+                <div class="card skill-card">
+                    <div class="card-icon text-blue"><i class="fas fa-microchip"></i></div>
+                    <h3 class="card-title">Fundamentos Ingeniería</h3>
+                    <ul class="skill-list font-mono">
+                        <li><i class="fas fa-check text-green"></i> Microcontroladores</li>
+                        <li><i class="fas fa-check text-green"></i> Análisis de Circuitos</li>
+                        <li><i class="fas fa-check text-green"></i> Lógica Matemática</li>
                     </ul>
                 </div>
 
-                <!-- Skill Card 3: Desarrollo & Investigación -->
-                <div class="tech-card bg-term-bg border border-term-border p-6 rounded-lg transition-all duration-300">
-                    <div class="text-term-blue text-3xl mb-4"><i class="fas fa-code"></i></div>
-                    <h3 class="text-lg font-bold text-white mb-2">Desarrollo & Lógica</h3>
-                    <ul class="text-sm space-y-2 font-mono text-term-text">
-                        <li><span class="text-term-green">✓</span> Python / Pseudocódigo</li>
-                        <li><span class="text-term-green">✓</span> Git & GitHub</li>
-                        <li><span class="text-term-green">✓</span> Investigación (IA/OpenSource)</li>
+                <!-- Development -->
+                <div class="card skill-card">
+                    <div class="card-icon text-blue"><i class="fas fa-code"></i></div>
+                    <h3 class="card-title">Desarrollo & Lógica</h3>
+                    <ul class="skill-list font-mono">
+                        <li><i class="fas fa-check text-green"></i> Python / Pseudocódigo</li>
+                        <li><i class="fas fa-check text-green"></i> Git & GitHub</li>
+                        <li><i class="fas fa-check text-green"></i> Investigación (IA)</li>
                     </ul>
                 </div>
-                
-                <!-- Skill Card 4: Estrategia (ACTUALIZADO) -->
-                <div class="tech-card bg-term-bg border border-term-border p-6 rounded-lg transition-all duration-300">
-                    <div class="text-term-blue text-3xl mb-4"><i class="fas fa-chess-knight"></i></div>
-                    <h3 class="text-lg font-bold text-white mb-2">Estrategia & Viabilidad</h3>
-                    <ul class="text-sm space-y-2 font-mono text-term-text">
-                        <li><span class="text-term-green">✓</span> Estructuración de Ideas</li>
-                        <li><span class="text-term-green">✓</span> Análisis de Rentabilidad</li>
-                        <li><span class="text-term-green">✓</span> Asesoría y Auditoría</li>
+
+                <!-- Strategy -->
+                <div class="card skill-card">
+                    <div class="card-icon text-blue"><i class="fas fa-chess-knight"></i></div>
+                    <h3 class="card-title">Estrategia & Viabilidad</h3>
+                    <ul class="skill-list font-mono">
+                        <li><i class="fas fa-check text-green"></i> Estructuración de Ideas</li>
+                        <li><i class="fas fa-check text-green"></i> Análisis de Rentabilidad</li>
+                        <li><i class="fas fa-check text-green"></i> Asesoría y Auditoría</li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="text-right mt-6 font-mono text-term-text opacity-50">} // return success</div>
+
+            <div class="code-close font-mono text-secondary">} // return success</div>
         </div>
     </section>
 
-    <!-- Sección Proyectos -->
-    <section id="projects" class="py-16 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-white mb-10 font-mono">
-                <span class="text-term-purple">git</span> checkout projects
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+        <div class="container">
+            <h2 class="section-title font-mono">
+                <span class="text-purple">git</span> checkout projects
             </h2>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Proyecto 1: Media Server -->
-                <div class="bg-term-card border border-term-border rounded-xl overflow-hidden shadow-xl flex flex-col">
-                    <div class="p-6 flex-grow">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold text-white font-mono">Media Server Stack</h3>
-                            <a href="https://github.com/OACH-py/media-server-stack" target="_blank" class="text-term-text hover:text-white transition-colors">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                        <div class="flex gap-2 mb-4">
-                             <span class="text-xs font-mono bg-term-bg border border-term-border px-2 py-1 rounded text-term-blue">Docker</span>
-                             <span class="text-xs font-mono bg-term-bg border border-term-border px-2 py-1 rounded text-term-green">Linux</span>
-                        </div>
-                        <p class="text-gray-400 text-sm mb-4">
-                            Infraestructura automatizada para gestión de medios. Uso de Docker Compose para orquestación, gestión de volúmenes persistentes y aislamiento de redes.
-                        </p>
-                    </div>
-                    <div class="px-6 pb-6 mt-auto">
-                        <a href="https://github.com/OACH-py/media-server-stack" target="_blank" class="text-term-blue hover:text-white font-mono text-sm flex items-center gap-2">
-                            <i class="fab fa-github"></i> Ver Código
+            <div class="grid projects-grid">
+                <!-- Media Server -->
+                <div class="card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title font-mono">Media Server Stack</h3>
+                        <a href="https://github.com/OACH-py/media-server-stack" target="_blank" class="project-link">
+                            <i class="fas fa-external-link-alt"></i>
                         </a>
                     </div>
+                    <div class="project-tags font-mono">
+                        <span class="tag tag-blue">Docker</span>
+                        <span class="tag tag-green">Linux</span>
+                    </div>
+                    <p class="project-desc text-secondary">
+                        Infraestructura automatizada para gestión de medios. Uso de Docker Compose para orquestación,
+                        gestión de volúmenes persistentes y aislamiento de redes.
+                    </p>
+                    <a href="https://github.com/OACH-py/media-server-stack" target="_blank"
+                        class="btn-text font-mono text-blue">
+                        <i class="fab fa-github"></i> Ver Código
+                    </a>
                 </div>
 
-                <!-- Proyecto 2: Python Fundamentals -->
-                <div class="bg-term-card border border-term-border rounded-xl overflow-hidden shadow-xl flex flex-col">
-                    <div class="p-6 flex-grow">
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-xl font-bold text-white font-mono">Python Fundamentals</h3>
-                            <a href="https://github.com/OACH-py/python-fundamentals" target="_blank" class="text-term-text hover:text-white transition-colors">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                        <div class="flex gap-2 mb-4">
-                             <span class="text-xs font-mono bg-term-bg border border-term-border px-2 py-1 rounded text-term-yellow">Python</span>
-                             <span class="text-xs font-mono bg-term-bg border border-term-border px-2 py-1 rounded text-term-purple">Algoritmos</span>
-                        </div>
-                        <p class="text-gray-400 text-sm mb-4">
-                            Repositorio de aprendizaje y práctica sobre fundamentos de programación, estructuras de datos y lógica algorítmica.
-                        </p>
-                    </div>
-                    <div class="px-6 pb-6 mt-auto">
-                        <a href="https://github.com/OACH-py/python-fundamentals" target="_blank" class="text-term-blue hover:text-white font-mono text-sm flex items-center gap-2">
-                            <i class="fab fa-github"></i> Ver Código
+                <!-- Python Fundamentals -->
+                <div class="card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title font-mono">Python Fundamentals</h3>
+                        <a href="https://github.com/OACH-py/python-fundamentals" target="_blank" class="project-link">
+                            <i class="fas fa-external-link-alt"></i>
                         </a>
                     </div>
+                    <div class="project-tags font-mono">
+                        <span class="tag tag-yellow">Python</span>
+                        <span class="tag tag-purple">Algoritmos</span>
+                    </div>
+                    <p class="project-desc text-secondary">
+                        Repositorio de aprendizaje y práctica sobre fundamentos de programación, estructuras de datos y
+                        lógica algorítmica.
+                    </p>
+                    <a href="https://github.com/OACH-py/python-fundamentals" target="_blank"
+                        class="btn-text font-mono text-blue">
+                        <i class="fab fa-github"></i> Ver Código
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Timeline / Experiencia -->
-    <section id="experience" class="py-16 px-4 bg-term-card border-y border-term-border">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold text-white mb-12 text-center font-mono">
+    <!-- Experience Section -->
+    <section id="experience" class="section experience-section">
+        <div class="container">
+            <h2 class="section-title font-mono text-center">
                 ./trayectoria.log
             </h2>
-            
-            <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-term-border">
-                
-                <!-- Item 1: Educación Actual -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-term-border bg-term-bg shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                        <i class="fas fa-university text-term-blue text-sm"></i>
-                    </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-term-bg p-4 rounded border border-term-border shadow-md">
-                        <div class="flex items-center justify-between space-x-2 mb-1">
-                            <div class="font-bold text-white">Ingeniería Electrónica</div>
-                            <time class="font-mono text-xs text-term-green">En Curso</time>
+
+            <div class="timeline">
+                <!-- Item 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker text-blue"><i class="fas fa-university"></i></div>
+                    <div class="timeline-content card">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Ingeniería Electrónica</h3>
+                            <span class="timeline-date font-mono text-green">En Curso</span>
                         </div>
-                        <div class="text-term-blue text-xs font-mono mb-2">Tecnológico de La Laguna (Torreón)</div>
-                        <div class="text-gray-400 text-sm">
+                        <div class="timeline-place font-mono text-blue">Tecnológico de La Laguna (Torreón)</div>
+                        <p class="timeline-desc text-secondary">
                             Perfil enfocado en lógica matemática, circuitos y resolución de problemas.
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Item 2: Experiencia Liderazgo (ACTUALIZADO) -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-term-border bg-term-bg shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                        <i class="fas fa-users-cog text-term-orange text-sm"></i>
-                    </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-term-bg p-4 rounded border border-term-border shadow-md">
-                        <div class="flex items-center justify-between space-x-2 mb-1">
-                            <div class="font-bold text-white">Tesorero & Asesor Estudiantil</div>
-                            <time class="font-mono text-xs text-term-text opacity-70">CBTa 216</time>
-                        </div>
-                        <div class="text-gray-400 text-sm">
-                            <ul class="list-disc list-inside space-y-1 mt-2 text-xs md:text-sm">
-                                <li>**Gestión Financiera:** Responsable de fondos y balances durante graduación.</li>
-                                <li>**Estructuración:** Apoyo estratégico para la viabilidad de eventos y compras.</li>
-                                <li>**Transparencia:** Auditoría de recursos y reportes detallados.</li>
-                            </ul>
-                        </div>
+                        </p>
                     </div>
                 </div>
 
-                <!-- Item 3: Educación Pasada -->
-                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-term-border bg-term-bg shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                        <i class="fas fa-graduation-cap text-term-purple text-sm"></i>
-                    </div>
-                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-term-bg p-4 rounded border border-term-border shadow-md">
-                        <div class="flex items-center justify-between space-x-2 mb-1">
-                            <div class="font-bold text-white">Técnico en Ofimática</div>
-                            <time class="font-mono text-xs text-term-text opacity-70">2025</time>
+                <!-- Item 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker text-orange"><i class="fas fa-users-cog"></i></div>
+                    <div class="timeline-content card">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Tesorero & Asesor Estudiantil</h3>
+                            <span class="timeline-date font-mono text-secondary">CBTa 216</span>
                         </div>
-                        <div class="text-term-blue text-xs font-mono mb-2">CBTa 216 (Lerdo, Dgo)</div>
-                        <div class="text-gray-400 text-sm">
-                            <ul class="list-disc list-inside space-y-1 mt-2 text-xs md:text-sm">
-                                <li>Mantenimiento (PC/Laptop), Instalación de Windows.</li>
-                                <li>Ofimática avanzada y gestión de información.</li>
-                            </ul>
-                        </div>
+                        <ul class="timeline-list text-secondary">
+                            <li><strong>Gestión Financiera:</strong> Responsable de fondos y balances.</li>
+                            <li><strong>Estructuración:</strong> Apoyo estratégico para viabilidad.</li>
+                            <li><strong>Transparencia:</strong> Auditoría de recursos.</li>
+                        </ul>
                     </div>
                 </div>
 
+                <!-- Item 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker text-purple"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="timeline-content card">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Técnico en Ofimática</h3>
+                            <span class="timeline-date font-mono text-secondary">2025</span>
+                        </div>
+                        <div class="timeline-place font-mono text-blue">CBTa 216 (Lerdo, Dgo)</div>
+                        <ul class="timeline-list text-secondary">
+                            <li>Mantenimiento (PC/Laptop), Instalación de Windows.</li>
+                            <li>Ofimática avanzada y gestión de información.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer / Contacto -->
-    <footer id="contact" class="py-12 px-4 border-t border-term-border text-center">
-        <h2 class="text-2xl font-bold text-white mb-6 font-mono">./contacto</h2>
-        
-        <!-- Redes Sociales -->
-        <div class="flex justify-center gap-8 mb-10">
-            <a href="https://github.com/OACH-py" target="_blank" class="text-gray-400 hover:text-white text-4xl transition-all transform hover:scale-110 hover:text-term-blue" title="Ver Perfil de GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="mailto:oach4444@gmail.com" class="text-gray-400 hover:text-white text-4xl transition-all transform hover:scale-110 hover:text-term-green" title="Enviar Correo: oach4444@gmail.com">
-                <i class="fas fa-envelope"></i>
-            </a>
-        </div>
+    <!-- Footer -->
+    <footer id="contact" class="footer section">
+        <div class="container text-center">
+            <h2 class="section-title font-mono">./contacto</h2>
 
-        <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-8 text-sm font-mono">
-            <div class="flex items-center gap-2 text-gray-400">
-                <i class="fas fa-map-marker-alt text-term-blue"></i>
-                <span>Lerdo, Cd Juárez, Durango</span>
+            <div class="social-links">
+                <a href="https://github.com/OACH-py" target="_blank" class="social-icon" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:oach4444@gmail.com" class="social-icon" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
             </div>
-            <div class="flex items-center gap-2 text-gray-400">
-                <i class="fas fa-route text-term-blue"></i>
-                <span>Disponibilidad en Comarca Lagunera</span>
+
+            <div class="contact-info font-mono text-secondary">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt text-blue"></i>
+                    <span>Lerdo, Cd Juárez, Durango</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-route text-blue"></i>
+                    <span>Disponibilidad en Comarca Lagunera</span>
+                </div>
             </div>
-        </div>
-        
-        <div class="text-gray-500 text-xs font-mono">
-            <p>echo "© 2025 Osvaldo Antonio Cárdenas Hernández";</p>
-            <p class="mt-2 text-term-text opacity-40">oach4444@gmail.com</p>
+
+            <div class="copyright font-mono text-secondary">
+                <p>echo "© 2025 Osvaldo Antonio Cárdenas Hernández";</p>
+                <p class="email-link">oach4444@gmail.com</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Script para efecto simple de tipeo en título (opcional) -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log("%c Profile Update Complete ", "background: #2ea043; color: #fff; border-radius: 3px;");
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
